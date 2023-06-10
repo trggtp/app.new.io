@@ -14,6 +14,7 @@ if (currentUser) {
         html += `<li class=${todo.isDone ? "checked" : ""}> ${todo.task}
       <span class="close">×</span></li>`;
       });
+    //add code html
     todoList.innerHTML = html;
     eventToggle();
     eventDelete();
@@ -38,12 +39,11 @@ if (currentUser) {
   function eventDelete() {
     let closeEl = document.querySelectorAll("#todo-list .close");
     closeEl.forEach(function (close, i) {
-      close.addEventListener("click", function (e) {
-        e = confirm("Are you sure want to delete ?");
-        console.log(todoArr);
-        //if e true = delete and save to strage
-        if (e) {
-          todoArr[i].splice(0, 1);
+      close.addEventListener("click", function () {
+        let isDel = confirm("Are you sure want to delete ?");
+        //if isDel true = delete and save to strage
+        if (isDel) {
+          todoArr.splice(i, 1);
           saveToStorage("todoArr", todoArr);
           displayTodoList();
         }
